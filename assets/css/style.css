@@ -1,0 +1,90 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Cairo", sans-serif;
+}
+body {
+  background-color: #333;
+}
+.container {
+  width: 80vw;
+  height: 80vh;
+  margin: auto;
+  padding: 0%;
+  background-color: #222;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 5fr 3fr;
+  position: relative;
+  transform: translate(0, 80px);
+}
+
+.img {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  justify-content: center;
+  align-items: center;
+}
+.img img,
+canvas {
+  max-width: 45vw;
+  max-height: 60vh;
+}
+.filters ul {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.filters {
+  padding: 0 30px;
+}
+.filters ul li {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  direction: rtl;
+  padding: 2px;
+}
+.upload input {
+  display: none;
+}
+
+.upload label {
+  color: #fff;
+  padding: 8px 20px;
+  border: 2px dashed #fff;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.filters ul li label {
+  color: #fff;
+}
+
+.filters ul li:last-child {
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.filters ul li a,
+span {
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  background-color: #060;
+}
+
+@media screen and (max-width: 650px) {
+  .container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .img img,
+  canvas {
+    max-width: 90vw;
+  }
+}

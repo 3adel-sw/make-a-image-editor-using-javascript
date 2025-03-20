@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Editor Image</title>
+    <!-- filles css -->
+    <!-- fille fontawesome css -->
+    <link rel="stylesheet" href="assets/css/all.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- fille animate css -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <!-- fille bootstrap css -->
+    <link rel="stylesheet" href="vendor/css/bootstrap.min.css" />
+    <!-- fille Normalize css -->
+    <link rel="stylesheet" href="assets/css/Normalize.css" />
+    <!-- fille FrameWork css -->
+    <link rel="stylesheet" href="assets/css/frameWork-style.css" />
+    <!-- fille font google  -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- fille style css -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <!-- fille Responsive css -->
+    <!-- <link rel="stylesheet" href="assets/css/responsive.css" /> -->
+  </head>
+
+  <div class="container animate__animated animate__fadeIn animate__delay-1s">
+    <div class="img">
+      <div class="img-box">
+        <img id="img" alt="img" />
+      </div>
+      <div class="upload">
+        <label for="upload">Uploud</label>
+        <input type="file" id="upload" />
+      </div>
+    </div>
+    <div class="filters">
+      <ul>
+        <li>
+          <label for="saturate"> Saturate</label>
+          <input
+            type="range"
+            id="saturate"
+            min="0"
+            max="200"
+            value="100"
+            step="0.1"
+          />
+        </li>
+        <li>
+          <label for="contrast"> Contrast</label>
+          <input
+            type="range"
+            id="contrast"
+            min="0"
+            max="200"
+            value="100"
+            step="0.1"
+          />
+        </li>
+        <li>
+          <label for="brightness"> Brightness</label>
+          <input
+            type="range"
+            id="brightness"
+            min="0"
+            max="200"
+            value="100"
+            step="0.1"
+          />
+        </li>
+        <li>
+          <label for="sepia"> Sepia</label>
+          <input
+            type="range"
+            id="sepia"
+            min="0"
+            max="200"
+            value="0"
+            step="0.1"
+          />
+        </li>
+        <li>
+          <label for="grayscale"> Grayscale</label>
+          <input
+            type="range"
+            id="grayscale"
+            min="0"
+            step="0.1"
+            max="1"
+            value="0"
+          />
+        </li>
+        <li>
+          <label for="blur"> Blur</label>
+          <input type="range" id="blur" min="0" step="0.1" max="10" value="0" />
+        </li>
+        <li>
+          <label for="hue-rotate"> Hue Rotate</label>
+          <input type="range" id="hue-rotate" min="0" max="350" value="0" />
+        </li>
+        <li>
+          <label for="invert">Invert</label>
+          <input type="range" id="invert" min="0" max="100" value="0" />
+        </li>
+        <li>
+          <a download="true" id="download">Download</a>
+          <span id="reset" onclick="resetValue()">Reser</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <body>
+    <!-- filles js -->
+    <!-- fille Jquery js -->
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
+    <!-- link jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- fille fontawesome js -->
+    <!-- <script src="assets/js/all.js"></script> -->
+    <!-- fille bootstrap js -->
+    <script src="vendor/js/bootstrap.bundle.min.js"></script>
+    <!-- fille script js -->
+    <script src="assets/js/script.js"></script>
+    <!-- fille fontawesome js -->
+    <!-- <script src="assets/js/all.js"></script> -->
+
+    <!-- 
+    <script>
+      let saturate = document.getElementById("saturate");
+      let contrast = document.getElementById("contrast");
+      let brightness = document.getElementById("brightness");
+      let sepia = document.getElementById("sepia");
+      let grayscale = document.getElementById("grayscale");
+      let blur = document.getElementById("blur");
+      let hueRotate = document.getElementById("hue-rotate");
+      let invert = document.getElementById("invert");
+
+      let upload = document.getElementById("upload");
+      let download = document.getElementById("download");
+      let image = document.getElementById("img");
+
+      let reset = document.querySelector("span");
+      let imgBox = document.querySelector(".img-box");
+
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
+
+      function resetValue() {
+        img.style.filter = "none";
+        saturate.value = 100;
+        contrast.value = 100;
+        brightness.value = 100;
+        sepia.value = 0;
+        grayscale.value = 0;
+        blur.value = 0;
+        hueRotate.value = 0;
+        invert.value = 0;
+      }
+
+      window.onload = function () {
+        resetValue();
+        download.style.display = "none";
+        reset.style.display = "none";
+        imgBox.style.display = "none";
+      };
+      upload.onchange = function () {
+        download.style.display = "block";
+        reset.style.display = "block";
+        imgBox.style.display = "block";
+        let file = new FileReader();
+        file.readAsDataURL(this.files[0]);
+        file.onload = function (e) {
+          image.src = e.target.result;
+        };
+      };
+
+      img.onload = function () {
+        canvas.width = img.width;
+        canvas.height = img.height;
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        img.style.display = "none";
+      };
+
+      let filters = document.querySelectorAll("ul li input");
+
+      filters.forEach((filter) => {
+        filter.addEventListener("input", function () {
+          img.style.filter = `
+    
+    saturate(${saturate.value}%)
+    contrast(${contrast.value}%)
+    brightness(${brightness.value}%)
+    sepia(${sepia.value}%)
+    grayscale(${grayscale.value})
+    blur(${blur.value}px)
+    hue-rotate(${hueRotate.value}deg)
+    invert(${invert.value}%)
+    
+    
+    `;
+        });
+      });
+
+      download.onclick = function () {
+        download.href = image.src;
+      };
+    </script>
+ -->
+  </body>
+</html>
